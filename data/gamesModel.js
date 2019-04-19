@@ -2,7 +2,8 @@ const db = require('./dbConfig');
 
 module.exports = {
 	getAll,
-	insert
+	insert,
+	getById
 };
 
 function getAll() {
@@ -12,4 +13,9 @@ function getAll() {
 async function insert(game) {
 	const [ id ] = await db('games').insert(game);
 	return await db('games').where({ id }).first();
+}
+
+// stretch
+async function getById(id) {
+	return db('games').where({ id: id }).first();
 }
